@@ -1,0 +1,30 @@
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_index = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+
+# Test the sorting algorithms
+arr = [64, 34, 25, 12, 22, 11, 90]
+
+# Bubble sort
+bubble_sorted_arr = arr.copy()
+bubble_sort(bubble_sorted_arr)
+print("Original array:", arr)
+print("Sorted array using Bubble Sort:", bubble_sorted_arr)
+
+# Selection sort
+selection_sorted_arr = arr.copy()
+selection_sort(selection_sorted_arr)
+print("Original array:", arr)
+print("Sorted array using Selection Sort:", selection_sorted_arr)
