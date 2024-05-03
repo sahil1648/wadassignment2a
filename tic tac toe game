@@ -1,0 +1,71 @@
+# Define a board as a list
+board = [' ' for _ in range(9)]
+
+
+# Function to display the board
+def display_board(board):
+    for i in range(3):
+        print("|", end="")
+        for j in range(3):
+            print(f" {board[i * 3 + j]} |", end="")
+        print()
+
+
+# Function to get player input
+def get_player_move(board):
+    while True:
+        move = int(input("Enter your move (1-9): ")) - 1
+        if board[move] == ' ':
+            return move
+        else:
+            print("This space is already occupied. Try again!")
+
+
+# Function to place a move on the board
+def place_move(board, player, move):
+    board[move] = player
+
+
+# Function to check for a winner
+def check_winner(board, player):
+    win_conditions = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+    for condition in win_conditions:
+        if all(board[i] == player for i in condition):
+            return True
+    return False
+
+
+# Function to check for a tie
+def check_tie(board):
+    return all(cell != ' ' for cell in board)
+
+
+# Main game loop
+def main():
+    current_player = 'X'
+
+    while True:
+        display_board(board)
+
+        # Get player move
+        move = get_player_move(board)
+        place_move(board, current_player, move)
+
+        # Check for winner
+        if check_winner(board, current_player):
+            display_board(board)
+            print(f"Player {current_player} wins!")
+            break
+
+        # Check for tie
+        if check_tie(board):
+            display_board(board)
+            print("It's a tie!")
+            break
+
+        # Switch player
+        current_player = 'O' if current_player == 'X' else 'X'
+
+
+if __name__ == "__main__":
+    main()
