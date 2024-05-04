@@ -1,0 +1,49 @@
+import nltk
+
+import os
+import nltk.corpus
+
+x="hello sagar,how are you?where were younthese days?"
+type(x)
+
+from nltk.tokenize import word_tokenize
+
+tokens = word_tokenize(x)
+print("Tokenization:")
+print(tokens)
+
+
+
+!pip3 install nltk
+
+nltk.download('punkt')
+
+s="python is an awesome language"
+tokens=word_tokenize(s)
+tokens
+
+from collections import Counter
+
+word_freq=Counter(tokens)
+print("\nword frequency")
+print(word_freq)
+
+from nltk.corpus import stopwords
+
+
+import nltk
+nltk.download('stopwords')
+
+stop_words=set(stopwords.words("english"))
+filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+print("\nTokens after removing stop words:")
+print(filtered_tokens)
+
+from nltk import pos_tag
+
+pos_tags=pos_tag(tokens)
+print("\n POS taging")
+print(pos_tags)
+
+import nltk
+nltk.download('averaged_perceptron_tagger')
